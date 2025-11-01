@@ -97,11 +97,11 @@ function parseTimestamp(buffer: Buffer, offset: number): bigint {
   const byte4 = BigInt(buffer[offset + 4]);
 
   const timestamp = 
-    ((byte0 & 0x0En) << 29n) |
+    ((byte0 & BigInt(0x0E)) << 29n) |
     (byte1 << 22n) |
-    ((byte2 & 0xFEn) << 14n) |
+    ((byte2 & BigInt(0xFE)) << 14n) |
     (byte3 << 7n) |
-    ((byte4 & 0xFEn) >> 1n);
+    ((byte4 & BigInt(0xFE)) >> 1n);
 
   return timestamp;
 }

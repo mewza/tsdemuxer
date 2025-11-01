@@ -126,7 +126,7 @@ function parsePCR(buffer: Buffer, offset: number): bigint {
   const byte5 = BigInt(buffer[offset + 5]);
 
   const base = (byte0 << 25n) | (byte1 << 17n) | (byte2 << 9n) | (byte3 << 1n) | (byte4 >> 7n);
-  const extension = ((byte4 & 0x01n) << 8n) | byte5;
+  const extension = ((byte4 & BigInt(0x01)) << 8n) | byte5;
 
   return base * 300n + extension;
 }
